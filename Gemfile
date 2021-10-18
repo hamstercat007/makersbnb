@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 ruby '3.0.0'
 
+gem 'pg'
+gem 'sinatra'
+
 group :test do
   gem 'rspec'
   gem 'simplecov', require: false
