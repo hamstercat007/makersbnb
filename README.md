@@ -35,4 +35,10 @@ INSERT INTO venues VALUES(3, 3, 'Chalet', '5 bed with fireplace', 750.50);
 SELECT * FROM venues;
 
 SELECT * FROM bookings;
+INSERT INTO bookings VALUES(1, 2, 3, '2021-10-09');
+INSERT INTO bookings VALUES(2, 1, 3, '2021-12-25');
+INSERT INTO bookings VALUES(3, 3, 2, '2022-07-05');
+
+REATE TABLE bookings(booking_id SERIAL PRIMARY KEY, guest_user_id VARCHAR(60), venue_id VARCHAR(60), date DATE);
+
 ```
