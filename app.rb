@@ -17,7 +17,7 @@ class Makersbnb < Sinatra::Base
   end 
 
   post '/venues' do
-    Venue.create(name: params[:venue_name], description: params[:description], user_id: params[:user_id], price_per_night: params[:price_per_night] )
+    Venue.create(user_id: params[:user_id], name: params[:venue_name], description: params[:description], price_per_night: params[:price_per_night], date: params[:date])
     redirect '/index'
   end 
 
