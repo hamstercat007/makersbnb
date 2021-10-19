@@ -17,7 +17,7 @@ describe Venue do
     v = Venue.new("5144", "Penthouse 5", "Riverside 4 bed", "1000", "12th May 2021")
     expect(v.price_per_night).to eq "1000"
   end
-  it 'initialises with price_per_night' do
+  it 'initialises with date' do
     v = Venue.new("5144", "Penthouse 5", "Riverside 4 bed", "1000", "12th May 2021")
     expect(v.date).to eq "12th May 2021"
   
