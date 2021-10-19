@@ -15,8 +15,6 @@ describe User do
       u = User.new(user_id: "67", email: "g@gmail.com")
       expect(u).to respond_to(:new_venue)
     end
-    it 'creates a new venue' do
-    end
   end
 end
 
