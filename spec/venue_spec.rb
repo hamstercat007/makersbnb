@@ -20,6 +20,5 @@ describe Venue do
   it 'initialises with price_per_night' do
     v = Venue.new("5144", "Penthouse 5", "Riverside 4 bed", "1000", )
     expect(v.price_per_night).to eq "1000"
-  
   end
 end

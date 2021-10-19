@@ -7,8 +7,11 @@ class Makersbnb < Sinatra::Base
   end 
 
   get '/' do
-    'Hello World!'
+    p ENV
+    @venues = Venue.all
+    erb:index
   end
+
 
   run! if app_file == $0
 end
