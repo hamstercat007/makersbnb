@@ -10,11 +10,10 @@ class Venue
   end
 
   def self.all
-
     if ENV['ENVIRONMENT'] == 'test'
-    connection = PG.connect(dbname: 'makersbnb_test')
+      connection = PG.connect(dbname: 'makersbnb_test')
     else
-    connection = PG.connect(dbname: 'makersbnb')
+      connection = PG.connect(dbname: 'makersbnb')
     end
     result = connection.exec("SELECT * FROM venues;")
     result.map { |venue| venue['name'] }

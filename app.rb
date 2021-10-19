@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
+require './lib/venue'
 
 class Makersbnb < Sinatra::Base
   configure :development do
@@ -7,7 +8,6 @@ class Makersbnb < Sinatra::Base
   end 
 
   get '/' do
-    p ENV
     @venues = Venue.all
     erb:index
   end
