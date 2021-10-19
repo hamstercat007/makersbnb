@@ -1,0 +1,1 @@
+ALTER TABLE venues ADD date VARCHAR(60);
