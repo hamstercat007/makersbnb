@@ -8,11 +8,11 @@ class User
     @email = email
   end
 
-  def new_venue(user_id:, name:, description:, price_per_night:)
+  def new_venue(user_id:, name:, description:, price_per_night:, date:)
     host_user_id = user_id
     connection = PG.connect(dbname: 'makersbnb')
-    result = connection.exec("INSERT INTO venues (host_user_id, name, description, price_per_night) VALUES('#{host_user_id}', '#{name}', '#{description}', '#{price_per_night}') RETURNING host_user_id, name, description, price_per_night;")
-    Venue.new(user_id: result[0]['host_user_id'], name: result[0]['name'], description: result[0]['description'], price_per_night: result[0]['price_per_night'])
+    result = connection.exec("INSERT INTO venues (host_user_id, name, description, price_per_night, date) VALUES('#{host_user_id}', '#{name}', '#{description}', '#{price_per_night}, '#{date}') RETURNING host_user_id, name, description, price_per_night, date;")
+    Venue.create(user_id: result[0]['host_user_id'], name: result[0]['name'], description: result[0]['description'], price_per_night: result[0]['price_per_night'], date: result[0]['date'])
   end  
 
   def self.create(email:, password:)
