@@ -1,9 +1,10 @@
 require 'pg'
 
 class Venue
-  attr_reader :host_user_id, :name, :description, :price_per_night
-  def initialize(host_user_id, name, description, price_per_night)
-    @host_user_id = host_user_id
+  #will need to add a date argument, column in db, etc
+  attr_reader :user_id, :name, :description, :price_per_night
+  def initialize(user_id:, name:, description:, price_per_night:)
+    @user_id = user_id
     @name = name
     @description = description
     @price_per_night = price_per_night
