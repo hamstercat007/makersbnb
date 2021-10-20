@@ -12,22 +12,23 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/user/login' do
+    #validation and login
     # useless assignment to variables at the moment. 
     # user_is and password need to be integrated into a session.
     user_id = params[:user_id]
     password = params[:password]
-    erb:venues_2
+    redirect '/venues'
   end
 
-  post '/user/signup' do
-    erb:user_create
+  get '/user/signup' do
+    erb:user_form 
   end
 
-  get '/user/create' do
+  post '/user/create' do
     new_user_id = params[:user_id]
     new_user_password = params[:password]
     # TBC - add new_user_id and new_user_password to the users database.
-    erb:index
+    redirect '/venues'
   end
 
   
