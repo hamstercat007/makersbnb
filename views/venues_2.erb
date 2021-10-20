@@ -1,0 +1,12 @@
+<h1>Makersbnb</h1>
+
+<h2>Venues</h2>
+<br>
+<form action="/venues/new">
+<input type="submit" value="Add new venue">
+</form>
+<% @venues.each do |venue| %>
+  <%= venue %>
+  <br>
+  <br>
+<% end %>

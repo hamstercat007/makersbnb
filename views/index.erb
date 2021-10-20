@@ -1,1 +1,24 @@
-< @venues = Venue.all
+<h1>Makersbnb</h1>
+
+<h2>Log in to an existing account</h2>
+<form action="/user/login" method="post">
+  <label for="user_id">
+    User ID
+    <input type="text" name="user_id" placeholder="enter user ID">
+  </label>
+  <br>
+  <label for="password">
+    Password
+    <input type="text" name="password" placeholder="enter password">
+  </label>
+  <input type="submit" value="Log in">
+</form>
+
+<h4>or</h4>
+
+<form action="/user/signup" method="post">
+  <label for="user_id">
+    Don't have an account? Sign up here
+  <input type="submit" value="Sign up">
+  </label>
+</form>
