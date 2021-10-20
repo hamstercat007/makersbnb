@@ -3,10 +3,29 @@
 <h2>Add a new venue to the website</h2>
 
 <form action="/venues/add" method="post">
-  <input type="number" name="user_id" placeholder="User ID">
-  <input type="text" name="venue_name" placeholder="Name of venue">
-  <input type="text" name="description" placeholder="Description">
-  <input type="text" name="price_per_night" placeholder="Price per night">
-  <input type="text" name="date" placeholder="Date">
+  <label for="user_id">
+    User ID
+    <input type="number" name="user_id" placeholder="enter user ID">
+  </label>
+   <br>
+  <label for="venue_name">
+    Venue name
+    <input type="text" name="venue_name" placeholder="enter venue name">
+  </label>
+  <br>
+  <label for="description">
+    Venue description
+    <input type="text" name="description" placeholder="enter description">
+  </label>
+  <br>
+  <label for="price_per_night">
+    Price per night
+    <input type="text" name="price_per_night" placeholder="enter price per night">
+  </label>
+  <br>
+  <label for="user_id">
+    Date
+    <input type="text" name="date" placeholder="enter a single date that the venue is available">
+  </label>
   <input type="submit" value="Submit">
 </form>

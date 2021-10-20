@@ -47,7 +47,7 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/venues/add' do
-    #Venue.create(user_id: params[:user_id], name: params[:venue_name], description: params[:description], price_per_night: params[:price_per_night], date: params[:date])
+    # Venue.create(user_id: params[:user_id], name: params[:venue_name], description: params[:description], price_per_night: params[:price_per_night], date: params[:date])
     # TBC - add new venue details to the venues database.
     redirect '/venues'
   end
