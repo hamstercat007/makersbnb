@@ -1,8 +1,10 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
 require './lib/venue'
+# require './lib/user'
 
 class Makersbnb < Sinatra::Base
+  enable :sessions
   configure :development do
     register Sinatra::Reloader
   end 
@@ -14,11 +16,9 @@ class Makersbnb < Sinatra::Base
 
   # first page - collects login details of user and redirects to the venues page.
   post '/user/login' do
-    #validation and login
-    # useless assignment to variables at the moment. 
-    # user_is and password need to be integrated into a session.
-    user_id = params[:user_id]
-    password = params[:password]
+    # TBC - user_id and password need to be integrated into a session.
+    # session[email] = params[:email]
+    # session[password] = params[:password]
     redirect '/venues'
   end
 
@@ -29,14 +29,16 @@ class Makersbnb < Sinatra::Base
 
   # /user/signup page - collects new user login details and redirects back to the first page.
   post '/user/add' do
-    new_user_id = params[:user_id]
-    new_user_password = params[:password]
-    # TBC - add new_user_id and new_user_password to the users database.
+    email = params[:email]
+    user_password = params[:password]
+    # TBC - pass the new user params into the User.create method to add to the database.
+    # User.create(email: params[:email], password: params[:password])
     redirect '/'
   end
 
   # /venues page - shows all the available venues to book
   get '/venues' do
+    # @email = session[:email]
     @venues = Venue.all
     erb:venues_2
   end
@@ -47,8 +49,8 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/venues/add' do
+    # TBC - pass the new venue params into the Venue.create method to add to the database.
     # Venue.create(user_id: params[:user_id], name: params[:venue_name], description: params[:description], price_per_night: params[:price_per_night], date: params[:date])
-    # TBC - add new venue details to the venues database.
     redirect '/venues'
   end
 

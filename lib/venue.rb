@@ -18,7 +18,9 @@ class Venue
       connection = PG.connect(dbname: 'makersbnb')
     end
     result = connection.exec("SELECT * FROM venues;")
-    result.map { |venue| venue['name'] }
+    result.map do |venue|
+      Venue.new(venue_id: venue['venue_id'], user_id: venue['host_user_id'], name: venue['name'], description: venue['description'],  price_per_night: venue['price_per_night'], date: venue['date'])
+    end
   end
 
   def self.create(user_id:, name:, description:, price_per_night:, date:)
