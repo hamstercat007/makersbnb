@@ -20,6 +20,7 @@ class Venue
     result = connection.exec("SELECT * FROM venues;")
     result.map do |venue|
       Venue.new(venue_id: venue['venue_id'], user_id: venue['host_user_id'], name: venue['name'], description: venue['description'],  price_per_night: venue['price_per_night'], date: venue['date'])
+      # change to display all venues MINUS all bookings with 1 in confirmed column
     end
   end
 
