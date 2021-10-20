@@ -13,9 +13,8 @@ describe Venue do
 
     venues = Venue.all
 
-    expect(venues).to include "Penthouse"
-    expect(venues).to include "Villa"
-    expect(venues).to include "Chalet"
+    expect(venues[0].name).to eq "Penthouse"
+
     end
   end 
   context 'initialize' do
