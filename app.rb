@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
 require './lib/venue'
+require './database_connection_setup'
 # require './lib/user'
 
 class Makersbnb < Sinatra::Base
@@ -24,7 +25,7 @@ class Makersbnb < Sinatra::Base
 
   # first page - 'sign up' button returns the 'user/signup' form.
   get '/user/signup' do
-    erb:user_signup
+    erb:'user/signup'
   end
 
   # /user/signup page - collects new user login details and redirects back to the first page.
@@ -40,12 +41,12 @@ class Makersbnb < Sinatra::Base
   get '/venues' do
     # @email = session[:email]
     @venues = Venue.all
-    erb:venues_2
+    erb:'venues/list'
   end
   
   # /venues/new page - collects new venue details and redirects back to the venues page.
   get '/venues/new' do
-    erb:'venues_new'
+    erb:'venues/new'
   end
 
   post '/venues/add' do
