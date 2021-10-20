@@ -1,5 +1,7 @@
 <h1>Makersbnb</h1>
 
+ <%= flash[:notice] %>
+
 <h2>Log in to an existing account</h2>
 <form action="/user/login" method="post">
   <label for="email">
@@ -16,9 +18,6 @@
 
 <h4>or</h4>
 
-<form action="/user/signup" >
-  <label for="register">
-    Don't have an account? Sign up here
-  <input type="submit" name="register" value="Sign up">
-  </label>
-</form>
+
+<a href="/user/signup">Don't have an account? Sign up here.</a>
+

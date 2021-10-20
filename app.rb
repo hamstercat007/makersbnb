@@ -3,9 +3,12 @@ require 'sinatra/reloader'
 require './lib/venue'
 require './database_connection_setup'
 require './lib/user'
+require 'sinatra/flash'
 
 class Makersbnb < Sinatra::Base
   enable :sessions
+  register Sinatra::Flash
+
   configure :development do
     register Sinatra::Reloader
   end 
@@ -17,14 +20,14 @@ class Makersbnb < Sinatra::Base
 
   # first page - collects login details of user and redirects to the venues page.
   post '/user/login' do
-    # TBC - user_id and password need to be integrated into a session.
-    session[:email] = params[:email]
-    session[:password] = params[:password]
-    # Below is an attempt at getting the user_id from the users table by searching the email given at login.
-    connection = PG.connect(dbname: 'makersbnb')
-    result = connection.exec("SELECT user_id FROM users WHERE email = '#{session[:email]}'")
-    session[:user_id] = result
-    redirect '/venues'
+    user = User.authenticate(email: params[:email], password: params[:password])
+    if user
+      session[:user_id] = user.user_id
+      redirect('/venues')
+    else
+      flash[:notice] = 'Please check your email or password.'
+      redirect('/')
+    end
   end
 
   # first page - 'sign up' button returns the 'user/signup' form.
@@ -34,16 +37,16 @@ class Makersbnb < Sinatra::Base
 
   # /user/signup page - collects new user login details and redirects back to the first page.
   post '/user/add' do
-    email = params[:email]
-    user_password = params[:password]
-    # TBC - pass the new user params into the User.create method to add to the database.
-    User.create(email: params[:email], password: params[:password])
-    redirect '/'
+    user = User.create(email: params[:email], password: params[:password])
+    #store the user's id in a session with a key :user_id. This is a hash. Only the id, only data we need to reload the user from db when we need it.
+    session[:user_id] = user.user_id
+    redirect '/venues'
   end
 
   # /venues page - shows all the available venues to book
   get '/venues' do
-    # @email = session[:email]
+    #Need to reload the user from the database, because it can't be seen. Store the least data possible - security
+    @user = User.find(id: session[:user_id])
     @venues = Venue.all
     erb:'venues/list'
   end

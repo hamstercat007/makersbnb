@@ -1,8 +1,8 @@
 <h1>Makersbnb</h1>
 
-<p>
-Logged in as <%= @email %>
-</p>
+<% if @user %>
+  <h1>Welcome, <%= @user.email %></h1>
+<% end %>
 
 <h2>Venues</h2>
 <br>
@@ -10,7 +10,7 @@ Logged in as <%= @email %>
 <input type="submit" value="Add new venue">
 </form>
 <% @venues.each do |venue| %>
-  <%= venue %>
+  <%= venue.name %>
   <br>
   <br>
 <% end %>
