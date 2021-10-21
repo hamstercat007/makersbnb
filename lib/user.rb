@@ -32,7 +32,7 @@ class User
     end
   end
 
-  def confirm_booking(venue_id) #only hosts do this
+  def self.confirm_booking(venue_id) #only hosts do this
     connection = PG.connect(dbname: 'makersbnb')
     connection.exec("UPDATE bookings SET confirmed = '1' WHERE venue_id = '#{venue_id}';")
     # above sql changes confirmed column for booking from not confirmed to confirmed
