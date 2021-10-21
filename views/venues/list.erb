@@ -6,11 +6,27 @@
 
 <h2>Venues</h2>
 <br>
+<form action="/user/id">
+<input type="submit" value="Manage guest requests">
+</form>
+<br>
 <form action="/venues/new">
 <input type="submit" value="Add new venue">
 </form>
+
+<%= flash[:notice] %>
 <% @venues.each do |venue| %>
   <%= venue.name %>
+  <br>
+  <%= venue.description %>
+  <br>
+  <%= venue.price_per_night %> per night
+  <br>
+  <%= venue.date %>
+  <br>
+  <form action="/venues/list/request">
+  <input type="submit" value="Book venue">
+  </form>
   <br>
   <br>
 <% end %>

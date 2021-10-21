@@ -60,15 +60,30 @@ class Makersbnb < Sinatra::Base
     # TBC - pass the new venue params into the new venue method to add it to the database.
 
     # original attempt 
-    # Venue.create(user_id: params[:user_id], name: params[:venue_name], description: params[:description], price_per_night: params[:price_per_night], date: params[:date])
-
+    Venue.create(user_id: session[:user_id], name: params[:venue_name], description: params[:description], price_per_night: params[:price_per_night], date: params[:date])
+    #@user_id = session[:user_id]
     # updated attempt as the user class now has the new_venue method
-    # User.new_venue(name: params[:venue_name], description: params[:description], price_per_night: params[:price_per_night], date: params[:date])
+    #User.new_venue(name: params[:venue_name], description: params[:description], price_per_night: params[:price_per_night], date: params[:date])
     # I think the issue here is that the User.new_venue requires @user_id to be carried out (please see the user.rb file).
     # In order to get @user_id I think we need to get the session[user_id] from when the user logs in.
 
     redirect '/venues'
   end
+  
+  # venues/list/request page - shows a flash notice to the guest user when a venue booking is requested
+  get '/venues/list/request' do
+    flash[:notice] = "Booking requested"
+    redirect '/venues'
+  end
+
+  # user/id page - shows a list of the requested booking to the host user
+  get '/user/id' do
+    user = User.find(id: session[:user_id])
+    @requested_bookings = user.requested_bookings
+    erb:'/user/id'
+  end
+
+
 
   run! if app_file == $0
 end

@@ -13,7 +13,7 @@ class Venue
   end
 
   def self.all
-    result = DatabaseConnection.query("SELECT * FROM venues")
+    result = DatabaseConnection.query("SELECT * FROM venues EXCEPT SELECT venues.venue_id, venues.host_user_id, venues.name, venues.description, venues.price_per_night, venues.date FROM venues, bookings WHERE venues.venue_id::INTEGER = bookings.venue_id::INTEGER AND bookings.confirmed::INTEGER = 1;")
     result.map do |venue|
       Venue.new(venue_id: venue['venue_id'], user_id: venue['host_user_id'], name: venue['name'], description: venue['description'],  price_per_night: venue['price_per_night'], date: venue['date'])
     end
