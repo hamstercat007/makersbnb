@@ -3,6 +3,7 @@ require 'sinatra/reloader'
 require './lib/venue'
 require './database_connection_setup'
 require './lib/user'
+require './lib/booking'
 require 'sinatra/flash'
 
 class Makersbnb < Sinatra::Base
@@ -71,17 +72,29 @@ class Makersbnb < Sinatra::Base
   end
   
   # venues/list/request page - shows a flash notice to the guest user when a venue booking is requested
-  get '/venues/list/request' do
-    flash[:notice] = "Booking requested"
+  post '/venues/list/request' do
+      Booking.create(user_id: session[:user_id], venue_id: params[:venue_id])
     redirect '/venues'
   end
 
   # user/id page - shows a list of the requested booking to the host user
   get '/user/id' do
-    user = User.find(id: session[:user_id])
-    @requested_bookings = user.requested_bookings
+    @user = User.find(id: session[:user_id])
+    @requested_bookings = @user.requested_bookings
     erb:'/user/id'
   end
+
+  post '/user/id/confirm' do
+    User.confirm_booking(params[:venue_id])
+    redirect 'venues'
+  end
+
+
+  get '/user/id/back' do
+    redirect 'venues'
+  end
+
+
 
 
 

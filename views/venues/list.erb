@@ -1,7 +1,7 @@
 <h1>Makersbnb</h1>
 
 <% if @user %>
-  <h1>Welcome, <%= @user.email %></h1>
+  <p>Welcome, <%= @user.email %></p>
 <% end %>
 
 <h2>Venues</h2>
@@ -16,16 +16,18 @@
 
 <%= flash[:notice] %>
 <% @venues.each do |venue| %>
-  <%= venue.name %>
+  Venue name: <%= venue.name %>
   <br>
-  <%= venue.description %>
+  Description: <%= venue.description %>
   <br>
-  <%= venue.price_per_night %> per night
+  Price: <%= venue.price_per_night %> per night
   <br>
-  <%= venue.date %>
+  Date: <%= venue.date %>
   <br>
-  <form action="/venues/list/request">
-  <input type="submit" value="Book venue">
+  <form action="/venues/list/request" method="post">
+  <input type="checkbox" id="Request booking" name="venue_id" value="<%= venue.venue_id %>">
+  <label for="Request booking"> Request booking?</label><br>
+  <input type ="submit" name="Submit"/>
   </form>
   <br>
   <br>
