@@ -69,10 +69,16 @@ class Makersbnb < Sinatra::Base
 
     redirect '/venues'
   end
-  
+
   # venues/list/request page - shows a flash notice to the guest user when a venue booking is requested
   get '/venues/list/request' do
-    flash[:notice] = "Booking requested"
+    if value = params[:request_booking]
+      flash[:notice] = "Booking requested"
+      #Booking.create(user_id: session[:user_id] , venue_id:)
+    elsif value = params[:cancel_request]
+      flash[:notice] = "Request cancelled"
+      # TBC - Implement a cancel request method in booking.rb and call it here
+    end
     redirect '/venues'
   end
 
@@ -82,8 +88,6 @@ class Makersbnb < Sinatra::Base
     @requested_bookings = user.requested_bookings
     erb:'/user/id'
   end
-
-
 
   run! if app_file == $0
 end

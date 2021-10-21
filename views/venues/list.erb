@@ -9,23 +9,25 @@
 <form action="/user/id">
 <input type="submit" value="Manage guest requests">
 </form>
-<br>
 <form action="/venues/new">
 <input type="submit" value="Add new venue">
 </form>
+<br>
 
-<%= flash[:notice] %>
+<h2><%= flash[:notice] %></h2>
+
 <% @venues.each do |venue| %>
-  <%= venue.name %>
+  Venue name: <%= venue.name %>
   <br>
-  <%= venue.description %>
+  Description: <%= venue.description %>
   <br>
-  <%= venue.price_per_night %> per night
+  Price_per_night: <%= venue.price_per_night %> per night
   <br>
-  <%= venue.date %>
+  Date: <%= venue.date %>
   <br>
   <form action="/venues/list/request">
-  <input type="submit" value="Book venue">
+  <input type="submit" name="request_booking" value="Request booking">
+  <input type="submit" name="cancel_request" value="Cancel request">
   </form>
   <br>
   <br>
