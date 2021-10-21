@@ -6,6 +6,10 @@ gem 'pg'
 gem 'sinatra'
 gem 'sinatra-contrib'
 
+gem 'twilio-ruby', '~> 5.58', '>= 5.58.3'
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails', require: 'dotenv/rails-now'
+
 group :test do
   gem 'rspec'
   gem 'simplecov', require: false
