@@ -8,6 +8,8 @@ class User
     @email = email
   end
 
+  @user_id = session[:user_id]
+
   def new_venue(name:, description:, price_per_night:, date:) #only hosts do this
     host_user_id = @user_id
     connection = PG.connect(dbname: 'makersbnb')
