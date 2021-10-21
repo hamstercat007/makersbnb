@@ -17,10 +17,10 @@ class Venue
     else
       connection = PG.connect(dbname: 'makersbnb')
     end
-    result = connection.exec("SELECT * FROM venues;")
+    result = connection.exec("SELECT * FROM venues EXCEPT SELECT venues.venue_id, venues.host_user_id, venues.name, venues.description, venues.price_per_night, venues.date FROM venues, bookings WHERE venues.venue_id::INTEGER = bookings.venue_id::INTEGER AND bookings.confirmed::INTEGER = 1;")
+    # above sql selects all venues, but removes those venues that are in the bookings table and are confirmed 
     result.map do |venue|
       Venue.new(venue_id: venue['venue_id'], user_id: venue['host_user_id'], name: venue['name'], description: venue['description'],  price_per_night: venue['price_per_night'], date: venue['date'])
-      # change to display all venues MINUS all bookings with 1 in confirmed column
     end
   end
 

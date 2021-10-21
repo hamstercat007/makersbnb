@@ -6,6 +6,17 @@ SELECT * from bookings WHERE confirmed = '0';
 
 And where confirmed = 0
 
+A =
+SELECT * FROM venues;
+
+B = 
+SELECT venues.venue_id, venues.host_user_id, venues.name, venues.description, venues.price_per_night, venues.date FROM venues, bookings WHERE venues.venue_id::INTEGER = bookings.venue_id::INTEGER AND bookings.confirmed::INTEGER = 1;
+
+
+A EXCEPT B
+
+SELECT * FROM venues EXCEPT SELECT venues.venue_id, venues.host_user_id, venues.name, venues.description, venues.price_per_night, venues.date FROM venues, bookings WHERE venues.venue_id::INTEGER = bookings.venue_id::INTEGER AND bookings.confirmed::INTEGER = 1;
+
 
 # change to display all venues that also have bookings with 0 in confirmed column
 
