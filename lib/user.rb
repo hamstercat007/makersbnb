@@ -1,11 +1,14 @@
 require 'pg'
 require './lib/venue'
+require 'bcrypt'
 
 class User
-  attr_reader :user_id, :email 
-  def initialize(user_id:, email:)
+  attr_reader :user_id, :email , :mobile_number
+
+  def initialize(user_id:, email:, mobile_number:)
     @user_id = user_id
     @email = email
+    @mobile_number = mobile_number
   end
 
   @user_id = session[:user_id]
@@ -17,10 +20,11 @@ class User
     Venue.create(user_id: result[0]['host_user_id'], name: result[0]['name'], description: result[0]['description'], price_per_night: result[0]['price_per_night'], date: result[0]['date'])
   end  
 
-  def self.create(email:, password:) #both hosts and guests do this
+  def self.create(email:, password:, mobile_number:) #both hosts and guests do this
+    encrypted_password = BCrypt::Password.create(password)
     connection = PG.connect(dbname: 'makersbnb')
-    result = connection.exec("INSERT INTO users (email, password) VALUES('#{email}', '#{password}') RETURNING user_id, email;")
-    User.new(user_id: result[0]['user_id'], email: result[0]['email'])
+    result = DatabaseConnection.query("INSERT INTO users (email, password, mobile_number) VALUES('#{email}', '#{encrypted_password}', '#{mobile_number}') RETURNING user_id, email, mobile_number;")
+    User.new(user_id: result[0]['user_id'], email: result[0]['email'], mobile_number: result[0]['mobile_number'])
   end
 
   def requested_bookings #only hosts do this
