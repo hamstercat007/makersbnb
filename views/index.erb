@@ -1,23 +1,117 @@
-<h1>Makersbnb</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<!--testing the page  -->
+<script src="<https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+
+<title>Engineering Project</title>
+<link rel="stylesheet" type="text/scss" href="stylesheet.scss">
+
+<head>
+<!--making it responsive to any device  -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--icons library  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!--using internal styling content -->  
+<style>
+  body {
+  background-image: url('https://metro.co.uk/wp-content/uploads/2021/05/GettyImages-1129399063.jpg?quality=90&strip=all&zoom=1&resize=644%2C429');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  }
+  header{
+    position: fixed;
+    padding: 2.0em;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.2); 
+    }
+  
+  .container nav{
+  z-index: -1;
+  top: 1;
+  float: right;
+  opacity: .95;
+  position: relative;
+  display: inline;
+  width: 25%;
+  padding: 1.0em 2.0em 1.0em 2.0em; 
+  height: .8em;
+  font-size: 1.0em;
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+  background-color: #808080;
+  font-family: Arial, Helvetica, sans-serif;
+  }
+  h1{
+    font-family: Arial, Helvetica, sans-serif;
+    color: purple;
+    font-size: 3.50em;
+  }
+  h2{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.20em;
+  }
+  h4{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.0rem;
+    color:purple
+  }
+  footer{
+    position: fixed;
+    text-align: center;
+    border-radius: 25px 50px;
+    font-size: 0.90em;
+    font-family: monospace;
+    padding: 0.8px;
+    background-color: #808080;
+    bottom: 0;
+    width: 100%;
+  }
+</style>
+</head>
+<body>
+ <header>
+   <div class="container"> 
+     <nav>
+      <a href="#venue_link_here">VENUES</a>
+      <a href="#contact_link_here">CONTACT US</a>
+     </nav>
+    </div>
+</header>
+<main>
+<h1>MakersBnB</h1>
 
  <%= flash[:notice] %>
 
 <h2>Log in to an existing account</h2>
 <form action="/user/login" method="post">
-  <label for="email">
-    Email
-    <input type="text" name="email" placeholder="enter email">
-  </label>
-  <br>
-  <label for="password">
-    Password
-    <input type="text" name="password" placeholder="enter password">
-  </label>
-  <input type="submit" value="Log in">
+  <div class=label_style>
+    <label for="email">
+      <h4>Email</h4>
+      <input type="text" name="email" placeholder="enter email">
+    </label>
+    <label for="password">
+      <h4>Password</h4>
+      <input type="text" name="password" placeholder="enter password">
+    </label>
+      <input type="submit" value="Log in">
+  </div>    
 </form>
+</main>
+</body>
 
-<h4>or</h4>
-
-
-<a href="/user/signup">Don't have an account? Sign up here.</a>
-
+<footer>
+  <br>
+  <div class="foot">
+    <br>
+  <a href="/user/signup">Don't have an account? Sign up here.</a>
+    <br>
+  </div>
+  <br>
+</footer>
