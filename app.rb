@@ -1,7 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
 require './lib/venue'
-require './database_connection_setup'
+require './lib/database_connection'
 require './lib/user'
 require './lib/booking'
 require 'sinatra/flash'
@@ -38,7 +38,7 @@ class Makersbnb < Sinatra::Base
 
   # /user/signup page - collects new user login details and redirects back to the first page.
   post '/user/add' do
-    user = User.create(email: params[:email], password: params[:password])
+    user = User.create(email: params[:email], password: params[:password], mobile_number: params[:mobile_number])
     #store the user's id in a session with a key :user_id. This is a hash. Only the id, only data we need to reload the user from db when we need it.
     session[:user_id] = user.user_id
     redirect '/venues'
