@@ -1,6 +1,9 @@
 require 'pg'
 require './lib/venue'
 require 'bcrypt'
+require './lib/database_connection'
+
+DatabaseConnection.setup('makersbnb')
 
 class User
   attr_reader :user_id, :email , :mobile_number
@@ -29,7 +32,7 @@ class User
 
   def self.create(email:, password:, mobile_number:) #both hosts and guests do this
     encrypted_password = BCrypt::Password.create(password)
-    result = DatabaseConnection.query("INSERT INTO users (email, password, mobile_number) VALUES('#{email}', '#{encrypted_password}', '#{mobile_number}) RETURNING user_id, email;")
+    result = DatabaseConnection.query("INSERT INTO users (email, password, mobile_number) VALUES('#{email}', '#{encrypted_password}', '#{mobile_number}') RETURNING user_id, email;")
     User.new(user_id: result[0]['user_id'], email: result[0]['email'], mobile_number: result[0]['mobile_number'])
   end
   

@@ -1,7 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
 require './lib/venue'
-require './lib/database_connection'
+require './lib/database_connection_setup'
 require './lib/user'
 require './lib/booking'
 require 'sinatra/flash'
