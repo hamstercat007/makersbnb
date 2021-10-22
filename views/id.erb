@@ -1,0 +1,32 @@
+<h1>Makersbnb</h1>
+
+<% if @user %>
+  <p>Signed in as <%= @user.email %></p>
+<% end %>
+
+<form action="/user/id/back">
+  <input type="submit" value="Back to venues page">
+</form>
+
+
+
+<h2>Host Profile</h2>
+<h3>Requests from guests</h3>
+
+
+<% @requested_bookings.each do |venue| %>
+  Venue name: <%= venue.name %>
+  <br>
+  Description: <%= venue.description %>
+  <br>
+  Price: <%= venue.price_per_night %> per night
+  <br>
+  Date: <%= venue.date %>
+  <br>
+  <form action="/user/id/confirm" method="post">
+  <input type="checkbox" id="Confirm booking" name="venue_id" value="<%= venue.venue_id %>">
+  <label for="Confirm booking"> Confirm booking?</label><br>
+  <input type ="submit" name="Submit"/>
+  </form>
+  <br>
+<% end %>
