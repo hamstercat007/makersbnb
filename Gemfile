@@ -5,6 +5,8 @@ ruby '3.0.0'
 gem 'pg'
 gem 'sinatra'
 gem 'sinatra-contrib'
+gem "bcrypt"
+gem 'sinatra-flash'
 
 gem 'twilio-ruby', '~> 5.58', '>= 5.58.3'
 gem 'dotenv-rails', groups: [:development, :test]
