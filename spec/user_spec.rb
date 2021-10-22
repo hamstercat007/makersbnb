@@ -16,5 +16,14 @@ describe User do
       expect(u).to respond_to(:new_venue)
     end
   end
-end
 
+  # context '#requested_bookings' do
+  #   it 'returns an array of requested bookings'
+  #   u = User.new(user_id: "67", email: "g@gmail.com")
+    
+  #   expect(u.requested_bookings).to 
+  #   end
+  # end
+
+
+end

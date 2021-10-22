@@ -1,20 +1,23 @@
-<h2>Venues</h2>
+<h1>Makersbnb</h1>
 
-<br>
+ <%= flash[:notice] %>
 
-<form action="/venues/new">
-<input type="submit" value="Add new venue">
+<h2>Log in to an existing account</h2>
+<form action="/user/login" method="post">
+  <label for="email">
+    Email
+    <input type="text" name="email" placeholder="enter email">
+  </label>
+  <br>
+  <label for="password">
+    Password
+    <input type="text" name="password" placeholder="enter password">
+  </label>
+  <input type="submit" value="Log in">
 </form>
 
-<% @venues.each do |venue| %>
-
-  <%= venue %>
-  
-  <br>
-  <br>
-
-<% end %>
-  
+<h4>or</h4>
 
 
+<a href="/user/signup">Don't have an account? Sign up here.</a>
 
